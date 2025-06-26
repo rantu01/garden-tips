@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink } from "react-router"; // ✅ Corrected to react-router-dom
+import { NavLink } from "react-router"; // ✅ Fixed import
 import { AuthContext } from "../context/AuthContext";
 import LOGO from "../assets/LOGO.png";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
@@ -11,12 +11,9 @@ const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  console.log(user);
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
     setDarkMode(initialTheme === "dark");
     document.documentElement.setAttribute("data-theme", initialTheme);
@@ -33,7 +30,7 @@ const Navbar = () => {
   const activeClass = "bg-white font-bold text-black";
 
   return (
-    <nav className="shadow-md bg-base-100 z-50 relative bg-gradient-to-r from-green-800 to-emerald-900 text-white py-6">
+    <nav className="sticky top-0 shadow-md bg-base-100 z-50 bg-gradient-to-r from-green-800 to-emerald-900 text-white py-6">
       <div className="container mx-auto flex justify-between items-center p-2">
         {/* Logo */}
         <NavLink
@@ -44,7 +41,7 @@ const Navbar = () => {
           <h2 className="text-xl font-bold">GardenTips</h2>
         </NavLink>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Toggle */}
         <button
           className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -58,76 +55,47 @@ const Navbar = () => {
             stroke="currentColor"
           >
             {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
             )}
           </svg>
         </button>
 
-        {/* Links & Actions */}
+        {/* Menu Links */}
         <div
           className={`${
             isMobileMenuOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto  z-40 md:items-center gap-2 md:gap-2  p-4 md:p-0 bg-gradient-to-r from-green-800 to-emerald-900 text-white rounded-2xl`}
+          } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto z-40 md:items-center gap-2 md:gap-2 p-4 md:p-0 bg-gradient-to-r from-green-800 to-emerald-900 text-white rounded-2xl`}
         >
           <NavLink
             to="/"
-            className={({ isActive }) =>
-              `${linkClass} ${isActive ? activeClass : ""}`
-            }
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
           >
             Home
           </NavLink>
           <NavLink
             to="/gardeners-all"
-            className={({ isActive }) =>
-              `${linkClass} ${isActive ? activeClass : ""}`
-            }
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
           >
             Explore Gardeners
           </NavLink>
           <NavLink
             to="/browseTips"
-            className={({ isActive }) =>
-              `${linkClass} ${isActive ? activeClass : ""}`
-            }
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
           >
             Browse Tips
           </NavLink>
+          {
+            user? <NavLink
+            to="/dashboard"
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
+          >
+            Dashboard
+          </NavLink> : ``
+          }
 
-          {user && (
-            <>
-              <NavLink
-                to="/gardenTip"
-                className={({ isActive }) =>
-                  `${linkClass} ${isActive ? activeClass : ""}`
-                }
-              >
-                Share a Garden Tip
-              </NavLink>
-              <NavLink
-                to="/my-tips"
-                className={({ isActive }) =>
-                  `${linkClass} ${isActive ? activeClass : ""}`
-                }
-              >
-                My Tips
-              </NavLink>
-            </>
-          )}
-
-          {/* 🌗 Theme Switcher */}
+          {/* 🌗 Theme */}
           <DarkModeSwitch
             checked={darkMode}
             onChange={toggleTheme}
@@ -136,7 +104,7 @@ const Navbar = () => {
             moonColor="#4B5563"
           />
 
-          {/* 🔐 Auth Actions */}
+          {/* 🔐 Auth */}
           {user ? (
             <div className="relative flex items-center group">
               <div

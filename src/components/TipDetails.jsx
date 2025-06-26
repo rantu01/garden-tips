@@ -8,11 +8,10 @@ const TipDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [isLiking, setIsLiking] = useState(false);
-
   useEffect(() => {
     const fetchTip = async () => {
       try {
-        const response = await fetch(`https://gardening-server-lovat.vercel.app/tips/${id}`);
+        const response = await fetch(`http://localhost:3000/tips/${id}`);
         if (!response.ok) throw new Error("Failed to fetch tip details.");
         const data = await response.json();
         setTip(data);
@@ -31,7 +30,7 @@ const TipDetails = () => {
     if (!tip) return;
     setIsLiking(true);
     try {
-      const response = await fetch(`https://gardening-server-lovat.vercel.app/tips/like/${tip._id}`, {
+      const response = await fetch(`http://localhost:3000/tips/like/${tip._id}`, {
         method: "PATCH",
       });
       if (!response.ok) throw new Error("Failed to like tip");

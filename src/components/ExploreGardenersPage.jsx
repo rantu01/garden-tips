@@ -7,7 +7,7 @@ const ExploreGardenersPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://gardening-server-lovat.vercel.app/gardeners-all")
+    fetch("http://localhost:3000/gardeners-all")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);

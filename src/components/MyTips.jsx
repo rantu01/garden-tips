@@ -31,7 +31,7 @@ const MyTips = () => {
     const fetchTips = async () => {
       try {
         const res = await fetch(
-          `https://gardening-server-lovat.vercel.app/api/tips?email=${encodeURIComponent(
+          `http://localhost:3000/api/tips?email=${encodeURIComponent(
             userEmail
           )}`
         );
@@ -67,7 +67,7 @@ const MyTips = () => {
 
     try {
       const res = await fetch(
-        `https://gardening-server-lovat.vercel.app/my-tips/${id}`,
+        `http://localhost:3000/my-tips/${id}`,
         {
           method: "DELETE",
         }
@@ -122,7 +122,7 @@ const MyTips = () => {
 
     try {
       const res = await fetch(
-        `https://gardening-server-lovat.vercel.app/api/tips/${currentTip._id}`,
+        `http://localhost:3000/api/tips/${currentTip._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

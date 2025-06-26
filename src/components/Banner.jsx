@@ -14,7 +14,7 @@ const slidesData = [
     description: 'Join us for a celebration of spring with garden tours, workshops, and live music.',
     imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80',
     buttonText: 'Learn More',
-    buttonLink: '/',
+    buttonLink: '/browseTips',
   },
   {
     id: 2,

@@ -33,7 +33,7 @@ const GardeningToolsEssentials = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-green-50 via-white to-green-100 dark:from-green-900 dark:via-green-800 dark:to-green-950 py-20 px-6 md:px-12 lg:px-24 rounded-3xl shadow-2xl max-w-7xl mx-auto">
+    <section className="mt-32 bg-gradient-to-br from-green-50 via-white to-green-100 dark:from-green-900 dark:via-green-800 dark:to-green-950 py-20 px-6 md:px-12 lg:px-24 rounded-3xl shadow-2xl max-w-7xl mx-auto">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full text-sm font-semibold mb-4 shadow-sm">

@@ -5,7 +5,7 @@ const ActiveGardeners = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://gardening-server-lovat.vercel.app/gardeners")
+    fetch("http://localhost:3000/gardeners")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);
@@ -33,7 +33,7 @@ const ActiveGardeners = () => {
       <h1 className="text-3xl font-extrabold text-center mb-10 text-green-700 dark:text-green-400 drop-shadow-sm">
         Active Gardeners
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
         {gardeners.map((gardener) => (
           <article
             key={gardener._id}
@@ -52,15 +52,7 @@ const ActiveGardeners = () => {
             <p className="text-sm text-neutral-content dark:text-green-300 mb-4 flex-grow">
               {gardener.bio || "No bio available."}
             </p>
-            <p className="mb-2">
-              <strong>Experience:</strong>{" "}
-              {Array.isArray(gardener.experiences)
-                ? gardener.experiences.join(", ")
-                : gardener.experiences || "N/A"}
-            </p>
-            <p className="mb-2">
-              <strong>Tips Shared:</strong> {gardener.totalSharedTips || 0}
-            </p>
+           
             <p>
               <strong>Rating:</strong> ⭐ {gardener.ratings?.average || 0} (
               {gardener.ratings?.count || 0})

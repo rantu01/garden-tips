@@ -41,7 +41,7 @@ const ShareGardenTip = () => {
       };
 
       const response = await fetch(
-        "https://gardening-server-lovat.vercel.app/tips",
+        "http://localhost:3000/tips",
         {
           method: "POST",
           headers: {

@@ -21,7 +21,7 @@ const BrowseTips = () => {
     const fetchTips = async () => {
       try {
         const response = await fetch(
-          "https://gardening-server-lovat.vercel.app/tips/public"
+          "http://localhost:3000/tips/public"
         );
         if (!response.ok) throw new Error("Failed to fetch tips");
         const data = await response.json();
@@ -60,7 +60,7 @@ const BrowseTips = () => {
 
   const handleView = (id) => {
     if (!user) {
-      navigate("/login", { state: { from: `/tip/${id}` } });
+      navigate("/login", { state: { from: `/tips/${id}` } });
     } else {
       navigate(`/tip/${id}`);
     }

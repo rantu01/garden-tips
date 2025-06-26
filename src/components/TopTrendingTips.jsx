@@ -5,7 +5,7 @@ const TopTrendingTips = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://gardening-server-lovat.vercel.app/tips-show?limit=6")
+    fetch("http://localhost:3000/tips-show?limit=6")
       .then((res) => res.json())
       .then((data) => {
         setTips(data);

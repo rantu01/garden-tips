@@ -9,6 +9,8 @@ import TopTrendingTips from "../components/TopTrendingTips";
 import GardeningToolsEssentials from "../components/GardeningToolsEssentials";
 import GardeningQuickTips from "../components/GardeningQuickTips";
 import { Helmet } from "react-helmet";
+import CategoriesSection from "../components/CategoriesSection";
+import CategoryTips from "../components/CategoryTips";
 
 const MainLayout = () => {
   return (
@@ -22,7 +24,10 @@ const MainLayout = () => {
         <Fade triggerOnce>
           <BannerSlider />
         </Fade>
-
+        <Fade triggerOnce>
+          <CategoriesSection></CategoriesSection>
+        </Fade>
+      
         <Slide direction="up" triggerOnce>
           <ActiveGardeners />
         </Slide>
