@@ -13,6 +13,10 @@ import PrivateRoute from "../components/PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
 import DashboardOverview from "../components/DashboardOverview";
 import CategoryTips from "../components/CategoryTips";
+import AboutUs from "../components/aboutUs ";
+import Support from "../components/Support";
+import GardenerDetails from "../components/GardenerDetails";
+import UserProfile from "../components/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -32,10 +36,22 @@ export const router = createBrowserRouter([
         path: "register",
         element: <SignUp />,
       },
+      {
+        path: "aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "support",
+        element: <Support></Support>,
+      },
       
       {
         path: "browseTips",
         element: <BrowseTips />,
+      },
+      {
+        path: "/gardener/:id",
+        element: <GardenerDetails></GardenerDetails>,
       },
       {
         path: "tip/:id",
@@ -96,6 +112,10 @@ export const router = createBrowserRouter([
       {
         path: "browseTips",
         element: <BrowseTips />,
+      },
+      {
+        path: "profile",
+        element: <UserProfile></UserProfile>,
       },
     ],
   },

@@ -86,6 +86,18 @@ const Navbar = () => {
           >
             Browse Tips
           </NavLink>
+          <NavLink
+            to="/aboutUs"
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
+          >
+            About Us 
+          </NavLink>
+          <NavLink
+            to="/support"
+            className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ""}`}
+          >
+            Support
+          </NavLink>
           {
             user? <NavLink
             to="/dashboard"

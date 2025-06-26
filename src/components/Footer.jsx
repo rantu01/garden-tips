@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gradient-to-r from-green-800 to-emerald-900 text-white mt-28 pt-6">
+    <footer className="bg-gradient-to-r from-green-800 to-emerald-900 text-white mt-28 pt-6 pb-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
@@ -29,8 +29,8 @@ const Footer = () => {
               <li><Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="gardeners-all" className="text-gray-300 hover:text-white transition-colors">Explore Gardeners</Link></li>
               <li><Link to="/browseTips" className="text-gray-300 hover:text-white transition-colors">Browse Tips</Link></li>
-              <li><Link to="/gardenTip" className="text-gray-300 hover:text-white transition-colors">Share Garden Tip</Link></li>
-              <li><Link to="/my-tips" className="text-gray-300 hover:text-white transition-colors">My Tip</Link></li>
+              <li><Link to="/aboutUs" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/support" className="text-gray-300 hover:text-white transition-colors">Support</Link></li>
               
             </ul>
           </div>
@@ -47,13 +47,13 @@ const Footer = () => {
             <div>
               <h4 className="text-sm font-medium mb-2">Follow Us</h4>
               <div className="flex space-x-4">
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors">
+                <Link to="https://www.facebook.com/" className="text-gray-300 hover:text-white transition-colors">
                   <FaFacebook className="text-xl" />
                 </Link>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors">
+                <Link to="https://x.com/?lang=en" className="text-gray-300 hover:text-white transition-colors">
                   <FaTwitter className="text-xl" />
                 </Link>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors">
+                <Link to="https://www.instagram.com/" className="text-gray-300 hover:text-white transition-colors">
                   <FaInstagram className="text-xl" />
                 </Link>
               </div>
