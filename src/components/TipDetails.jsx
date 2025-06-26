@@ -223,14 +223,6 @@ const TipDetails = () => {
                   <FaHeart className={isLiking ? "animate-pulse" : ""} />
                   <span>Like ({tip.totalLiked || 0})</span>
                 </button>
-
-                <button
-                  onClick={handleShare}
-                  className="flex items-center gap-2 px-5 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium text-gray-700 dark:text-gray-300 transition-colors"
-                >
-                  <FaShareAlt />
-                  <span>{isCopied ? "Copied!" : "Share"}</span>
-                </button>
               </div>
             </div>
           </article>
