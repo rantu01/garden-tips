@@ -8,7 +8,7 @@ const ExploreGardenersPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/gardeners-all")
+    fetch("https://server-side-f.vercel.app/gardeners-all")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);

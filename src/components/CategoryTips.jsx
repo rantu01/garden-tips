@@ -10,7 +10,7 @@ const CategoryTips = () => {
   useEffect(() => {
     const fetchTips = async () => {
       try {
-        const res = await fetch("http://localhost:3000/tips/public");
+        const res = await fetch("https://server-side-f.vercel.app/tips/public");
         const data = await res.json();
         const filtered = data.filter((tip) => tip.category === name);
         setTips(filtered);

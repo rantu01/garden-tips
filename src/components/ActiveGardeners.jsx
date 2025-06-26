@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const ActiveGardeners = () => {
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/gardeners")
+    fetch("https://server-side-f.vercel.app/gardeners")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);
@@ -57,6 +59,12 @@ const ActiveGardeners = () => {
               <strong>Rating:</strong> ⭐ {gardener.ratings?.average || 0} (
               {gardener.ratings?.count || 0})
             </p>
+            <button
+              onClick={() => navigate(`/gardener/${gardener._id}`)}
+              className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+            >
+              See Details
+            </button>
           </article>
         ))}
       </div>

@@ -18,8 +18,8 @@ const DashboardOverview = () => {
         setError(null);
         
         const [tipsRes, usersRes] = await Promise.all([
-          fetch("http://localhost:3000/tips/public"),
-          fetch("http://localhost:3000/gardeners-all"),
+          fetch("https://server-side-f.vercel.app/tips/public"),
+          fetch("https://server-side-f.vercel.app/gardeners-all"),
         ]);
 
         if (!tipsRes.ok || !usersRes.ok) {

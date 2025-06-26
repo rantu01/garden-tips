@@ -12,7 +12,7 @@ const GardenerDetails = () => {
   useEffect(() => {
     const fetchGardener = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/gardeners/${id}`);
+        const response = await fetch(`https://server-side-f.vercel.app/gardeners/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

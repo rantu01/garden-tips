@@ -25,7 +25,7 @@ const TipDetails = () => {
   useEffect(() => {
     const fetchTip = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/tips/${id}`);
+        const response = await fetch(`https://server-side-f.vercel.app/tips/${id}`);
         if (!response.ok) throw new Error("Failed to fetch tip details.");
         const data = await response.json();
         setTip(data);
@@ -44,7 +44,7 @@ const TipDetails = () => {
     if (!tip) return;
     setIsLiking(true);
     try {
-      const response = await fetch(`http://localhost:3000/tips/like/${tip._id}`, {
+      const response = await fetch(`https://server-side-f.vercel.app/tips/like/${tip._id}`, {
         method: "PATCH",
       });
       if (!response.ok) throw new Error("Failed to like tip");

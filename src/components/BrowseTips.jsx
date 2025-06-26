@@ -21,7 +21,7 @@ const BrowseTips = () => {
     const fetchTips = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/tips/public"
+          "https://server-side-f.vercel.app/tips/public"
         );
         if (!response.ok) throw new Error("Failed to fetch tips");
         const data = await response.json();
