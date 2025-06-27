@@ -32,7 +32,6 @@ const Register = () => {
 
     const { name, email, password, photoURL } = formData;
 
-    // Password validation
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
     if (!passwordRegex.test(password)) {
       setError(
@@ -44,7 +43,20 @@ const Register = () => {
     try {
       const userCredential = await createUser(email, password);
       await updateUser({ displayName: name, photoURL });
-      setUser({ ...userCredential.user, displayName: name, photoURL });
+      const user = { ...userCredential.user, displayName: name, photoURL };
+      setUser(user);
+
+      // Save gardener info in DB
+      await fetch("https://server-side-f.vercel.app/api/gardeners", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          photoURL,
+          uid: user.uid,
+        }),
+      });
 
       setSuccess("Registration successful!");
       navigate("/");
@@ -57,7 +69,21 @@ const Register = () => {
     setError("");
     try {
       const result = await googleLogin();
-      setUser(result.user);
+      const user = result.user;
+      setUser(user);
+
+      // Save gardener info in DB
+      await fetch("https://server-side-f.vercel.app/api/gardeners", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: user.displayName || "Google User",
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        }),
+      });
+
       setSuccess("Signed in with Google!");
       navigate("/");
     } catch (err) {

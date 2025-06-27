@@ -143,14 +143,7 @@ const UserProfile = () => {
                       Cancel
                     </button>
                   </>
-                ) : (
-                  <button
-                    onClick={() => setEditMode(true)}
-                    className="px-4 py-2 bg-white text-blue-700 rounded-md hover:bg-blue-50 transition-colors flex items-center gap-2"
-                  >
-                    <FaEdit /> Edit Profile
-                  </button>
-                )}
+                ) : (``)}
                 <button
                   onClick={signOutUser}
                   className="px-4 py-2 bg-transparent border border-white text-white rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
