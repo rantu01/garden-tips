@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { DarkModeSwitch } from "react-toggle-dark-mode";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router"; // changed to react-router-dom
 import {
   FaHome,
-  FaPlus,
   FaList,
   FaUser,
-  FaSignOutAlt,
   FaLightbulb,
   FaLeaf,
   FaBars,
@@ -24,11 +21,12 @@ const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Sidebar for Desktop & Toggle for Mobile */}
+      {/* Sidebar */}
       <aside
-        className={` fixed md:static top-0 left-0 h-screen w-64 bg-gradient-to-b from-green-800 to-emerald-900 text-white p-4 z-50 transform transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`fixed md:sticky top-0 left-0 h-screen w-64 
+          bg-gradient-to-b from-green-800 to-emerald-900 text-white p-4 z-50 
+          transform transition-transform duration-300
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="flex items-center justify-between mb-6">
           <NavLink
@@ -99,8 +97,8 @@ const DashboardLayout = () => {
         </nav>
       </aside>
 
-      {/* Main Content with top mobile nav */}
-      <div className="flex-1 bg-base-200 min-h-screen">
+      {/* Right Side Content */}
+      <div className="flex-1 bg-base-200 h-screen overflow-y-auto">
         {/* Top bar for mobile */}
         <div className="md:hidden flex items-center justify-between p-4 bg-gradient-to-r from-green-800 to-emerald-900 text-white shadow-md sticky top-0 z-40">
           <button onClick={toggleSidebar} className="text-2xl">
