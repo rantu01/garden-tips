@@ -20,9 +20,6 @@ const Support = () => {
           <MdOutlineContactSupport className="inline mr-3 -mt-2" />
           GardenTips Support
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-          Your gardening questions answered with care and expertise.
-        </p>
       </div>
 
       {/* Support Options */}
@@ -117,11 +114,11 @@ const Support = () => {
 
       {/* Additional Help Section */}
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Still Need Help?</h2>
+        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-800 mb-6">Still Need Help?</h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div className="bg-white p-8 rounded-2xl shadow-md border border-green-100">
             <FaHeadset className="text-4xl text-emerald-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-3">Live Chat</h3>
+            <h3 className="text-xl font-semibold mb-3 text-black">Live Chat</h3>
             <p className="text-gray-600 mb-4">
               Chat with a support agent in real-time during business hours.
             </p>
@@ -131,7 +128,7 @@ const Support = () => {
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-md border border-green-100">
             <FaClock className="text-4xl text-emerald-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-3">Schedule a Call</h3>
+            <h3 className="text-xl font-semibold mb-3 text-black">Schedule a Call</h3>
             <p className="text-gray-600 mb-4">
               Book a convenient time for a callback from our experts.
             </p>

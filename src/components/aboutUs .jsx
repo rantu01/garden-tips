@@ -20,9 +20,6 @@ const AboutUs = () => {
         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-800">
           About <span className="whitespace-nowrap">GardenTips</span> <FaLeaf className="inline ml-2 -mt-2" />
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-          Cultivating knowledge and growing communities — one plant at a time.
-        </p>
       </div>
 
       {/* Value Cards */}
