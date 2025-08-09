@@ -1,8 +1,5 @@
 import React from "react";
 import { Fade, Slide, Zoom } from "react-awesome-reveal";
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import BannerSlider from "../components/Banner";
 import ActiveGardeners from "../components/ActiveGardeners";
 import TopTrendingTips from "../components/TopTrendingTips";
@@ -10,7 +7,6 @@ import GardeningToolsEssentials from "../components/GardeningToolsEssentials";
 import GardeningQuickTips from "../components/GardeningQuickTips";
 import { Helmet } from "react-helmet";
 import CategoriesSection from "../components/CategoriesSection";
-import CategoryTips from "../components/CategoryTips";
 
 const MainLayout = () => {
   return (
@@ -20,27 +16,34 @@ const MainLayout = () => {
       </Helmet>
 
       {/* Page Content */}
-      <main className="flex-grow space-y-16">
-        <Fade triggerOnce>
+      <main className="flex-grow space-y-20">
+        {/* Banner - soft fade in */}
+        <Fade triggerOnce duration={1000}>
           <BannerSlider />
         </Fade>
-        <Fade triggerOnce>
-          <CategoriesSection></CategoriesSection>
-        </Fade>
-      
-        <Slide direction="up" triggerOnce>
+
+        {/* Categories - smooth upward slide */}
+        <Slide direction="up" triggerOnce duration={800}>
+          <CategoriesSection />
+        </Slide>
+
+        {/* Active Gardeners - smooth upward slide */}
+        <Slide direction="up" triggerOnce duration={900}>
           <ActiveGardeners />
         </Slide>
 
-        <Fade direction="up" cascade damping={0.1} triggerOnce>
+        {/* Top Trending Tips - gentle fade cascade */}
+        <Fade triggerOnce cascade damping={0.15} duration={1000}>
           <TopTrendingTips />
         </Fade>
 
-        <Zoom triggerOnce>
+        {/* Gardening Tools Essentials - soft zoom */}
+        <Zoom triggerOnce duration={900}>
           <GardeningToolsEssentials />
         </Zoom>
 
-        <Slide direction="left" triggerOnce>
+        {/* Quick Tips - slide from left */}
+        <Slide direction="left" triggerOnce duration={800}>
           <GardeningQuickTips />
         </Slide>
       </main>
