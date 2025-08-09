@@ -1,5 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const DashboardOverview = () => {
   const { user } = useContext(AuthContext);
@@ -16,7 +25,7 @@ const DashboardOverview = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         const [tipsRes, usersRes] = await Promise.all([
           fetch("https://server-side-f.vercel.app/tips/public"),
           fetch("https://server-side-f.vercel.app/gardeners-all"),
@@ -49,12 +58,19 @@ const DashboardOverview = () => {
     }
   }, [user?.email]);
 
+  // Chart data
+  const chartData = [
+    { name: "Total Items", value: stats.totalItems },
+    { name: "My Items", value: stats.myItems },
+    { name: "Total Users", value: stats.totalUsers },
+  ];
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold ">Dashboard Overview</h1>
-          <p className="">Welcome back, {user?.displayName || 'User'}!</p>
+          <p className="">Welcome back, {user?.displayName || "User"}!</p>
         </div>
         {user?.photoURL && (
           <img
@@ -71,73 +87,67 @@ const DashboardOverview = () => {
         </div>
       ) : error ? (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <p className="text-sm text-red-700">Error loading dashboard data: {error}</p>
-            </div>
-          </div>
+          <p className="text-sm text-red-700">
+            Error loading dashboard data: {error}
+          </p>
         </div>
       ) : (
         <>
+          {/* Stat Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center">
-                <div className="p-3 rounded-lg bg-green-50 mr-4">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-500">Total Items</p>
-                  <p className="text-2xl font-semibold text-gray-800">{stats.totalItems}</p>
-                </div>
-              </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-sm font-medium text-gray-500">Total Items</p>
+              <p className="text-2xl font-semibold text-gray-800">
+                {stats.totalItems}
+              </p>
             </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center">
-                <div className="p-3 rounded-lg bg-blue-50 mr-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-500">My Items</p>
-                  <p className="text-2xl font-semibold text-gray-800">{stats.myItems}</p>
-                </div>
-              </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-sm font-medium text-gray-500">My Items</p>
+              <p className="text-2xl font-semibold text-gray-800">
+                {stats.myItems}
+              </p>
             </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center">
-                <div className="p-3 rounded-lg bg-purple-50 mr-4">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-500">Total Users</p>
-                  <p className="text-2xl font-semibold text-gray-800">{stats.totalUsers}</p>
-                </div>
-              </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <p className="text-sm font-medium text-gray-500">Total Users</p>
+              <p className="text-2xl font-semibold text-gray-800">
+                {stats.totalUsers}
+              </p>
             </div>
           </div>
 
+          {/* Recharts Bar Chart */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
+            <h2 className="text-xl font-semibold mb-4">Statistics Chart</h2>
+            <div style={{ width: "100%", height: 300 }}>
+              <ResponsiveContainer>
+                <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis allowDecimals={false} />
+                  <Tooltip />
+                  <Bar dataKey="value" fill="#10B981" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* User Info */}
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">User Information</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              User Information
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <p className="text-sm font-medium text-gray-500">Full Name</p>
-                <p className="text-base font-medium text-gray-800">{user?.displayName || "Not provided"}</p>
+                <p className="text-base font-medium text-gray-800">
+                  {user?.displayName || "Not provided"}
+                </p>
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-500">Email Address</p>
-                <p className="text-base font-medium text-gray-800">{user?.email || "Not provided"}</p>
+                <p className="text-base font-medium text-gray-800">
+                  {user?.email || "Not provided"}
+                </p>
               </div>
             </div>
           </div>
